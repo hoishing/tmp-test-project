@@ -52,9 +52,11 @@ def download_file():
 
 
 # Execute download
-file_path = download_file()
-
-swe.set_ephe_path(str(file_path.parent))
+if not output_file.exists():
+    st.write("cache not found")
+    # download_file()
+    # st.write(f"File downloaded to: {output_file}")
+    # swe.set_ephe_path(str(output_file.parent))
 
 for body in bodies:
     try:
@@ -62,6 +64,3 @@ for body in bodies:
         st.write(body, lon, speed)
     except Exception as e:
         st.write(body, e)
-
-
-st.write(f"File downloaded to: {file_path}")
